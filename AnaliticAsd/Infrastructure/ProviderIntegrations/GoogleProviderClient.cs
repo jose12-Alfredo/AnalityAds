@@ -145,7 +145,11 @@ public sealed class GoogleProviderClient(HttpClient http, IConfiguration configu
     {
         var request = new HttpRequestMessage(method, url);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        if (ads) request.Headers.TryAddWithoutValidation("developer-token", Required("GoogleAds:DeveloperToken"));
+        // Google Ads stopped requiring developer tokens for new integrations in September 2026.
+        // Keep accepting a legacy value for existing deployments, but do not block OAuth,
+        // account discovery, or synchronization when it is absent.
+        if (ads && configuration["GoogleAds:DeveloperToken"] is { Length: > 0 } developerToken)
+            request.Headers.TryAddWithoutValidation("developer-token", developerToken);
         if (ads && configuration["GoogleAds:LoginCustomerId"] is { Length: > 0 } managerId)
             request.Headers.TryAddWithoutValidation("login-customer-id", managerId.Replace("-", ""));
         return request;
