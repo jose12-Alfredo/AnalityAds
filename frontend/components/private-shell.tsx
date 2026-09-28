@@ -12,6 +12,7 @@ export function PrivateShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [session] = useState(() => readSession());
   const [theme, setTheme] = useState<"dark" | "light">(() => typeof window !== "undefined" && window.sessionStorage.getItem(themeKey) === "light" ? "light" : "dark");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -35,5 +36,45 @@ export function PrivateShell({ children }: { children: React.ReactNode }) {
     document.documentElement.dataset.theme = nextTheme;
   }
 
-  return <div className="private-shell"><aside className="app-sidebar"><Link className="shell-brand" href="/app"><span className="brand-mark">A</span><span>Analiti<span>Ads</span></span></Link><nav aria-label="Navegación principal">{items.map(([href, label]) => <Link className={pathname === href || (href !== "/app" && pathname.startsWith(`${href}/`)) ? "is-active" : ""} href={href} key={href}>{label}</Link>)}</nav><div className="sidebar-footer"><span>{session.email}</span><small>{session.agencyName} · {session.role}</small>{canManageClientAccess(session.role) && <Link href="/app/clientes">Accesos de clientes</Link>}<button type="button" onClick={toggleTheme}>Tema {theme === "dark" ? "claro" : "oscuro"}</button><button type="button" onClick={() => { clearSession(); router.replace("/login"); }}>Cerrar sesión</button></div></aside><div className="shell-mobile-bar"><Link className="shell-brand" href="/app"><span className="brand-mark">A</span><span>Analiti<span>Ads</span></span></Link><button type="button" onClick={toggleTheme}>Tema</button></div><div className="private-shell-content">{children}</div></div>;
+  function signOut() {
+    clearSession();
+    router.replace("/login");
+  }
+
+  const navigation = items.map(([href, label]) => (
+    <Link
+      className={pathname === href || (href !== "/app" && pathname.startsWith(`${href}/`)) ? "is-active" : ""}
+      href={href}
+      key={href}
+      onClick={() => setIsMobileMenuOpen(false)}
+    >
+      {label}
+    </Link>
+  ));
+
+  return <div className="private-shell">
+    <aside className="app-sidebar">
+      <Link className="shell-brand" href="/app"><span className="brand-mark">A</span><span>Analiti<span>Ads</span></span></Link>
+      <nav aria-label="Navegación principal">{navigation}</nav>
+      <div className="sidebar-footer">
+        <span>{session.email}</span><small>{session.agencyName} · {session.role}</small>
+        {canManageClientAccess(session.role) && <Link href="/app/clientes">Accesos de clientes</Link>}
+        <button type="button" onClick={toggleTheme}>Tema {theme === "dark" ? "claro" : "oscuro"}</button>
+        <button type="button" onClick={signOut}>Cerrar sesión</button>
+      </div>
+    </aside>
+    <header className="shell-mobile-bar">
+      <Link className="shell-brand" href="/app"><span className="brand-mark">A</span><span>Analiti<span>Ads</span></span></Link>
+      <button type="button" aria-expanded={isMobileMenuOpen} aria-controls="mobile-navigation" onClick={() => setIsMobileMenuOpen((current) => !current)}>Menú</button>
+    </header>
+    {isMobileMenuOpen && <div className="shell-mobile-menu" id="mobile-navigation">
+      <nav aria-label="Navegación principal">{navigation}</nav>
+      <div className="shell-mobile-session"><span>{session.email}</span><small>{session.agencyName} · {session.role}</small></div>
+      <div className="shell-mobile-actions">
+        <button type="button" onClick={toggleTheme}>Tema {theme === "dark" ? "claro" : "oscuro"}</button>
+        <button type="button" onClick={signOut}>Cerrar sesión</button>
+      </div>
+    </div>}
+    <div className="private-shell-content">{children}</div>
+  </div>;
 }
