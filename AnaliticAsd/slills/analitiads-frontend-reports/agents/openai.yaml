@@ -1,0 +1,4 @@
+interface:
+  display_name: "AnalitiAds Frontend Reports"
+  short_description: "Integra reportes inmutables de AnalitiAds"
+  default_prompt: "Usa $analitiads-frontend-reports para integrar los reportes de AnalitiAds en el frontend."

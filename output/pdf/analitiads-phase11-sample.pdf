@@ -1,0 +1,57 @@
+%PDF-1.7
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 1 /Kids [4 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 2021 >>
+stream
+0.12 0.24 0.42 rg 0 760 612 32 re f
+1 1 1 rg BT /F1 9 Tf 54 772 Td (Reporte de campaÒa) Tj ET
+0.12 0.15 0.20 rg BT /F1 20 Tf 54 738 Td (Reporte de campaÒa) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 709 Td (Period: 2026-09-14 to 2026-09-14) Tj ET
+0.12 0.15 0.20 rg BT /F1 8 Tf 54 692 Td (Generated: 2026-09-15 17:18 UTC | Report 8497edcd-6e43-47ef-81c9-f1d0efc3380f) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 678 Td (EXECUTIVE SUMMARY) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 655 Td (spend: 12.5 [CompleteForSnapshots]) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 640 Td (ctr: 5 [CompleteForSnapshots]) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 625 Td (DATA QUALITY) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 602 Td (Coverage: 1/1 days | Sufficiency: Sufficient) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 587 Td (INSIGHTS) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 564 Td (No conclusion met the configured evidence threshold.) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 548 Td (RECOMMENDATIONS) Tj ET
+0.12 0.15 0.20 rg BT /F1 10 Tf 54 525 Td (No recommendation was generated with sufficient evidence.) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 509 Td (CAMPAIGNS) Tj ET
+0.12 0.15 0.20 rg BT /F1 11 Tf 54 486 Td (Report client | SALES | Sufficient) Tj ET
+0.12 0.15 0.20 rg BT /F1 9 Tf 54 468 Td (spend: 12.5 | ctr: 5) Tj ET
+0.12 0.15 0.20 rg BT /F1 13 Tf 54 454 Td (METHODOLOGY) Tj ET
+0.12 0.15 0.20 rg BT /F1 9 Tf 54 431 Td (This report is an immutable snapshot of the authorized AnalysisEngine result. Observed) Tj ET
+0.12 0.15 0.20 rg BT /F1 9 Tf 54 417 Td (and derived data remain distinguished. Empty or unavailable evidence is never converted) Tj ET
+0.12 0.15 0.20 rg BT /F1 9 Tf 54 403 Td (to zero. Insights are deterministic and do not establish causality.) Tj ET
+0.12 0.15 0.20 rg BT /F1 7 Tf 54 389 Td (Schema 1 | Snapshot SHA-256) Tj ET
+0.12 0.15 0.20 rg BT /F1 7 Tf 54 377 Td (6EDDE3BFF65E94BD7AA82C508461AA22166225D7BA9D277F52D3FFC20EEC3B9C) Tj ET
+0.35 0.38 0.42 rg BT /F1 8 Tf 510 28 Td (Page 1 of 1) Tj ET
+
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000344 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R /Info << /Title (Reporte de campaÒa) >> >>
+startxref
+2417
+%%EOF

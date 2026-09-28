@@ -1,0 +1,23 @@
+namespace AnaliticAsd.Contracts.Metrics;
+
+public sealed record SyncMetricsRequest(DateOnly Since, DateOnly Until);
+public sealed record MetricsSyncResponse(Guid AdAccountId, DateOnly Since, DateOnly Until, int AccountSnapshots, int CampaignSnapshots, int AdSetSnapshots, int AdSnapshots, DateTimeOffset CompletedAtUtc);
+public sealed record InsightSnapshotResponse(Guid Id, Guid AdAccountId, Guid? CampaignId, Guid? AdSetId, Guid? AdId, string Level, DateOnly Date, string Currency, string ObservedDataQuality, ObservedMetricsResponse Observed, DerivedMetricsResponse Derived, DateTimeOffset ObservedAtUtc);
+public sealed record ObservedMetricsResponse(decimal? Spend, long? Impressions, long? Reach, long? LinkClicks, decimal? Leads, decimal? Purchases, decimal? PurchaseValue);
+public sealed record DerivedMetricsResponse(decimal? Frequency, decimal? Cpm, decimal? Ctr, decimal? Cpc, decimal? Cpl, decimal? Cpa, decimal? Roas);
+public sealed record DecimalRangeMetricResponse(decimal? Value, string Availability);
+public sealed record LongRangeMetricResponse(long? Value, string Availability);
+public sealed record RangeObservedMetricsResponse(DecimalRangeMetricResponse Spend, LongRangeMetricResponse Impressions, LongRangeMetricResponse Reach, LongRangeMetricResponse LinkClicks, DecimalRangeMetricResponse Leads, DecimalRangeMetricResponse Purchases, DecimalRangeMetricResponse PurchaseValue);
+public sealed record RangeDerivedMetricsResponse(DecimalRangeMetricResponse Frequency, DecimalRangeMetricResponse Cpm, DecimalRangeMetricResponse Ctr, DecimalRangeMetricResponse Cpc, DecimalRangeMetricResponse Cpl, DecimalRangeMetricResponse Cpa, DecimalRangeMetricResponse Roas);
+public sealed record RangeMetricsCoverageResponse(int RequestedDays, int SnapshotDays, int LegacyZeroNormalizedSnapshotDays, DateOnly? FirstSnapshotDate, DateOnly? LastSnapshotDate);
+public sealed record RangeMetricsSummaryResponse(Guid AdAccountId, Guid? CampaignId, Guid? AdSetId, Guid? AdId, string Level, DateOnly Since, DateOnly Until, string? Currency, string CurrencyStatus, RangeMetricsCoverageResponse Coverage, RangeObservedMetricsResponse Observed, RangeDerivedMetricsResponse Derived);
+public sealed record CampaignSelectorItemResponse(Guid Id, string Name, string Objective, string ConfiguredStatus, string EffectiveStatus, bool IsPresentOnMeta, bool HasActivity, bool HasObservedSpend, string? Currency, string CurrencyStatus, RangeMetricsCoverageResponse Coverage, DecimalRangeMetricResponse Spend);
+public sealed record CampaignSelectorResponse(Guid AdAccountId, DateOnly Since, DateOnly Until, string ActivityFilter, IReadOnlyList<CampaignSelectorItemResponse> Campaigns);
+public sealed record DecimalMetricComparisonResponse(decimal? Current, decimal? Baseline, decimal? AbsoluteChange, decimal? PercentageChange, string Availability);
+public sealed record LongMetricComparisonResponse(long? Current, long? Baseline, long? AbsoluteChange, decimal? PercentageChange, string Availability);
+public sealed record ComparedObservedMetricsResponse(DecimalMetricComparisonResponse Spend, LongMetricComparisonResponse Impressions, LongMetricComparisonResponse Reach, LongMetricComparisonResponse LinkClicks, DecimalMetricComparisonResponse Leads, DecimalMetricComparisonResponse Purchases, DecimalMetricComparisonResponse PurchaseValue);
+public sealed record ComparedDerivedMetricsResponse(DecimalMetricComparisonResponse Frequency, DecimalMetricComparisonResponse Cpm, DecimalMetricComparisonResponse Ctr, DecimalMetricComparisonResponse Cpc, DecimalMetricComparisonResponse Cpl, DecimalMetricComparisonResponse Cpa, DecimalMetricComparisonResponse Roas);
+public sealed record RangeMetricsComparisonResponse(string ComparisonType, RangeMetricsSummaryResponse Current, RangeMetricsSummaryResponse Baseline, ComparedObservedMetricsResponse Observed, ComparedDerivedMetricsResponse Derived);
+public sealed record BenchmarkMetricResponse(decimal? CampaignValue, decimal? BenchmarkValue, decimal? AbsoluteDifference, decimal? PercentageDifference, int ComparableCampaigns, string Availability);
+public sealed record CampaignBenchmarkItemResponse(Guid CampaignId, string Name, string Objective, string? Currency, BenchmarkMetricResponse Cpm, BenchmarkMetricResponse Ctr, BenchmarkMetricResponse Cpc, BenchmarkMetricResponse Cpl, BenchmarkMetricResponse Cpa, BenchmarkMetricResponse Roas);
+public sealed record CampaignBenchmarksResponse(Guid AdAccountId, DateOnly Since, DateOnly Until, string Method, IReadOnlyList<CampaignBenchmarkItemResponse> Campaigns);

@@ -1,0 +1,46 @@
+# .NET
+**/bin/
+**/obj/
+packages/
+TestResults/
+coverage/
+*.user
+*.suo
+
+# JetBrains / editors
+.idea/
+**/.idea/
+*.iml
+_ReSharper.Caches/
+**/_ReSharper.Caches/
+.vscode/
+
+# Frontend
+**/node_modules/
+**/.next/
+**/out/
+**/dist/
+**/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# Local configuration and secrets
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.*.example
+AnaliticAsd/appsettings.Development.json
+AnaliticAsd/appsettings.Local.json
+AnaliticAsd/AnaliticAsd.http
+**/appsettings.*.Local.json
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Runtime and temporary artifacts
+*.log
+tmp/
+**/tmp/
+frontend/tmp-*
+.data-protection/
+**/.data-protection/

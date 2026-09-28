@@ -1,0 +1,4 @@
+interface:
+  display_name: "AnalitiAds Dashboard Builder"
+  short_description: "Build the advertising dashboard platform"
+  default_prompt: "Use $analitiads-dashboard-builder to plan or implement the next verified AnalitiAds dashboard-builder increment."

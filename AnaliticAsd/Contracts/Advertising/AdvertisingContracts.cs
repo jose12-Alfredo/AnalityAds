@@ -1,0 +1,6 @@
+namespace AnaliticAsd.Contracts.Advertising;
+
+public sealed record SyncResponse(Guid AdAccountId, string Status, DateTimeOffset? StartedAtUtc, DateTimeOffset? CompletedAtUtc, int CampaignsSynced, int AdSetsSynced, int AdsSynced, string? ErrorCode);
+public sealed record CampaignResponse(Guid Id, Guid AdAccountId, string MetaCampaignId, string Name, string Objective, string ConfiguredStatus, string EffectiveStatus, DateTimeOffset? StartsAtUtc, DateTimeOffset? StopsAtUtc, DateTimeOffset? MetaCreatedAtUtc, DateTimeOffset? MetaUpdatedAtUtc, DateTimeOffset LastSyncedAtUtc, bool IsPresentOnMeta);
+public sealed record AdSetResponse(Guid Id, Guid CampaignId, string MetaAdSetId, string Name, string OptimizationGoal, string BillingEvent, string ConfiguredStatus, string EffectiveStatus, DateTimeOffset? StartsAtUtc, DateTimeOffset? EndsAtUtc, DateTimeOffset? MetaCreatedAtUtc, DateTimeOffset? MetaUpdatedAtUtc, DateTimeOffset LastSyncedAtUtc, bool IsPresentOnMeta);
+public sealed record AdResponse(Guid Id, Guid AdSetId, string MetaAdId, string Name, string ConfiguredStatus, string EffectiveStatus, DateTimeOffset? MetaCreatedAtUtc, DateTimeOffset? MetaUpdatedAtUtc, DateTimeOffset LastSyncedAtUtc, bool IsPresentOnMeta);

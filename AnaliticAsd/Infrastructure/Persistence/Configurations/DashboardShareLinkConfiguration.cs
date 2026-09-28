@@ -1,0 +1,9 @@
+using AnaliticAsd.Domain.Dashboards;
+using AnaliticAsd.Domain.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+namespace AnaliticAsd.Infrastructure.Persistence.Configurations;
+internal sealed class DashboardShareLinkConfiguration : IEntityTypeConfiguration<DashboardShareLink>
+{
+ public void Configure(EntityTypeBuilder<DashboardShareLink> b) { b.ToTable("dashboard_share_links"); b.HasKey(x=>x.Id); b.Property(x=>x.Id).HasColumnName("id"); b.Property(x=>x.DashboardId).HasColumnName("dashboard_id"); b.Property(x=>x.AgencyId).HasColumnName("agency_id"); b.Property(x=>x.ClientId).HasColumnName("client_id"); b.Property(x=>x.CreatedByUserId).HasColumnName("created_by_user_id"); b.Property(x=>x.TokenHash).HasColumnName("token_hash").HasMaxLength(64); b.Property(x=>x.PasswordHash).HasColumnName("password_hash").HasMaxLength(300); b.Property(x=>x.RecipientEmail).HasColumnName("recipient_email").HasMaxLength(320); b.Property(x=>x.ExpiresAtUtc).HasColumnName("expires_at_utc"); b.Property(x=>x.AllowFilters).HasColumnName("allow_filters"); b.Property(x=>x.AllowExport).HasColumnName("allow_export"); b.Property(x=>x.AllowEmbed).HasColumnName("allow_embed"); b.Property(x=>x.CreatedAtUtc).HasColumnName("created_at_utc"); b.Property(x=>x.RevokedAtUtc).HasColumnName("revoked_at_utc"); b.Property(x=>x.LastAccessedAtUtc).HasColumnName("last_accessed_at_utc"); b.Property(x=>x.AccessCount).HasColumnName("access_count"); b.Property(x=>x.Version).HasColumnName("version").IsConcurrencyToken(); b.HasIndex(x=>x.TokenHash).IsUnique(); b.HasIndex(x=>new{x.AgencyId,x.DashboardId}); b.HasOne<Dashboard>().WithMany().HasForeignKey(x=>x.DashboardId).OnDelete(DeleteBehavior.Cascade); b.HasOne<User>().WithMany().HasForeignKey(x=>x.CreatedByUserId).OnDelete(DeleteBehavior.Restrict); }
+}
