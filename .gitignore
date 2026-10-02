@@ -4,6 +4,7 @@
 packages/
 TestResults/
 coverage/
+artifacts/
 *.user
 *.suo
 
@@ -30,6 +31,8 @@ frontend/next-env.d.ts
 !**/.env.*.example
 AnaliticAsd/appsettings.Development.json
 AnaliticAsd/appsettings.Local.json
+AnaliticAsd/appsettings.Production.json
+AnaliticAsd/appsettings.Staging.json
 AnaliticAsd/AnaliticAsd.http
 **/appsettings.*.Local.json
 *.pfx

@@ -1,0 +1,43 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "AnaliticAsd/**"
+      - "AnaliticAsd.sln"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    paths:
+      - "AnaliticAsd/**"
+      - "AnaliticAsd.sln"
+      - ".github/workflows/backend-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore AnaliticAsd.sln
+
+      - name: Build
+        run: dotnet build AnaliticAsd.sln --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test AnaliticAsd.sln --configuration Release --no-build --logger "console;verbosity=normal"
+
+      - name: Publish backend
+        run: dotnet publish AnaliticAsd/AnaliticAsd.csproj --configuration Release --no-build --output artifacts/backend

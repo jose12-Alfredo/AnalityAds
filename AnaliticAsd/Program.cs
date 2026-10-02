@@ -45,11 +45,16 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails();
 var dataProtection = builder.Services.AddDataProtection().SetApplicationName("AnalitiAds");
-if (builder.Environment.IsDevelopment())
+var dataProtectionKeysPath = builder.Configuration["DataProtection:KeysPath"];
+if (string.IsNullOrWhiteSpace(dataProtectionKeysPath) && builder.Environment.IsDevelopment())
 {
     // Keep development keys with this checkout. This avoids reusing DPAPI keys
     // created by another Windows account or IDE sandbox.
-    var keyDirectory = Path.Combine(builder.Environment.ContentRootPath, ".data-protection");
+    dataProtectionKeysPath = Path.Combine(builder.Environment.ContentRootPath, ".data-protection");
+}
+if (!string.IsNullOrWhiteSpace(dataProtectionKeysPath))
+{
+    var keyDirectory = Path.GetFullPath(dataProtectionKeysPath);
     Directory.CreateDirectory(keyDirectory);
     dataProtection.PersistKeysToFileSystem(new DirectoryInfo(keyDirectory));
 }
