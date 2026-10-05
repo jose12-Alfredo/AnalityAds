@@ -1,0 +1,10 @@
+# Keep source files consistent across Windows, Linux, and macOS.
+* text=auto eol=lf
+
+# Do not transform binary assets.
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg text eol=lf

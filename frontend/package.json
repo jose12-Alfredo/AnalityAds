@@ -2,13 +2,20 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
     "test:editor": "node --test --experimental-strip-types lib/*.test.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run typecheck && npm run test:editor && npm run build"
+  },
+  "engines": {
+    "node": ">=20.9.0 <25",
+    "npm": ">=10"
   },
   "dependencies": {
     "next": "16.3.4",
